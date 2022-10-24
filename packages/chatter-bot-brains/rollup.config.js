@@ -1,0 +1,28 @@
+import typescript from "rollup-plugin-typescript2";
+import dts from "rollup-plugin-dts";
+export default [
+  {
+    input: "lib/index.ts",
+    output: {
+      file: "dist/index.js",
+      format: "cjs",
+    },
+    plugins: [typescript()],
+  },
+  {
+    input: "lib/index.ts",
+    output: {
+      file: "dist/index.mjs",
+      format: "es",
+    },
+    plugins: [typescript()],
+  },
+  {
+    //汇总.d.ts 类型声明文件
+    input: "./lib/index.ts",
+    output: {
+      file: "dist/index.d.ts",
+    },
+    plugins: [dts()],
+  },
+];
